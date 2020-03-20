@@ -4,6 +4,7 @@ def import_from_csv(file, model)
   counter = 0
   CSV.foreach(file, headers: true) do |row|
     my_row = row.to_hash
+    my_row.delete('id')
     if my_row['unit_price']
       my_row['unit_price'] = (my_row['unit_price'].to_r / (100)).to_f
     end
