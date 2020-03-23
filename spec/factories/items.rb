@@ -1,8 +1,8 @@
 FactoryBot.define do
   factory :item do
-    name { "Coca Cola" }
-    description { "Super refreshing" }
-    unit_price { 32.40 }
+    name { Faker::Commerce.product_name }
+    description { Faker::Movies::HitchhikersGuideToTheGalaxy.quote }
+    unit_price { rand(100..10000) }
     association :merchant
   end
 end
