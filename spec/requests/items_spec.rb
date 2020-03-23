@@ -7,10 +7,10 @@ describe "Items API" do
   it "successfully" do
       get "/api/v1/items"
 
-      items = json["data"]
       expect(response).to be_successful
 
-      items = json['data']
+      items = json[:data]
+
       expect(items.count).to eq(20)
     end
   end
@@ -18,19 +18,20 @@ describe "Items API" do
 
     get "/api/v1/items/#{id}"
 
-    item = json['data']
-
+    item = json[:data]
+    
     expect(response).to be_successful
-    expect(item['id'].to_i).to eq(id)
+    expect(item[:id].to_i).to eq(id)
   end
    it "can create a new item" do
     merchant = create(:merchant)
     valid_attributes = { name: 'Visit Narnia', description: 'blank', unit_price: 123.45, merchant_id: merchant.id }
     post "/api/v1/items", params: valid_attributes
-    item = json['data']
+
+    item = json[:data]
 
     expect(response).to be_successful
-    expect(item['attributes']['name']).to eq('Visit Narnia')
+    expect(item[:attributes][:name]).to eq('Visit Narnia')
   end
   it "can update an existing item" do
     previous_name = Item.first.name

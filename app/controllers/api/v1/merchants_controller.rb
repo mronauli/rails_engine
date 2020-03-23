@@ -12,7 +12,7 @@ class Api::V1::MerchantsController < ApplicationController
   end
 
   def update
-    Merchant.update(params[:id], merchant_params)
+    render json: Merchant.update(params[:id], merchant_params)
   end
 
   def destroy
