@@ -12,8 +12,7 @@ class Item < ApplicationRecord
   end
 
   def self.search(params)
-    where('name ILIKE :params' || 'description ILIKE :params', params: "%#{params[:description]}%", params: "%#{params[:name]}%" || :created_at == params[:created_at]
-      .to_date || :updated_at == params[:updated_at].to_date || :unit_price == params[:created_at].to_f)
+    where('name ILIKE :params' || 'description ILIKE :params', params: "%#{params[:description]}%", params: "%#{params[:name]}%" || :created_at == params[:created_at].to_date || :updated_at == params[:updated_at].to_date || :unit_price == params[:created_at].to_f)
   end
 
   def count_decimal
