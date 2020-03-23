@@ -44,7 +44,7 @@ RSpec.describe Merchant, type: :model do
       expect(Merchant.most_items(3)).to eq([@merchant_2, @merchant_3, @merchant_1])
     end
     it "can get revenue for a merchant" do
-      expect(@merchant_3.my_revenue).to eq(455.05)
+      expect(Merchant.my_revenue(@merchant_3.id)).to eq(455.05)
     end
   end
 end

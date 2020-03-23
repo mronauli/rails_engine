@@ -7,7 +7,7 @@ describe "Merchants API" do
     it "sends a list of merchants" do
       get "/api/v1/merchants"
 
-      merchants = json['data']
+      merchants = json[:data]
 
       expect(response).to be_successful
       expect(merchants.count).to eq(10)
@@ -17,20 +17,20 @@ describe "Merchants API" do
     it "can get one merchant by its id" do
       get "/api/v1/merchants/#{merchant_id}"
 
-      merchant = json['data']
+      merchant = json[:data]
 
       expect(response).to be_successful
-      expect(merchant['id'].to_i).to eq(merchant_id)
+      expect(merchant[:id].to_i).to eq(merchant_id)
     end
   end
   describe 'POST /merchants' do
     it "can create a new merchant" do
       valid_attributes = { name: 'Saw' }
       post "/api/v1/merchants", params: valid_attributes
-      merchant = json['data']
+      merchant = json[:data]
 
       expect(response).to be_successful
-      expect(merchant['attributes']['name']).to eq('Saw')
+      expect(merchant[:attributes][:name]).to eq('Saw')
     end
   end
   describe 'PUT /merchants' do

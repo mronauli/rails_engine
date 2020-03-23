@@ -33,7 +33,7 @@ describe "A merchant sorted by most to least items sold API" do
     expect(response).to be_successful
 
     merchants = json[:data]
-    require "pry"; binding.pry
+    
     expect(merchants[0][:attributes][:name]).to eq(@merchant_2.name)
     expect(merchants[1][:attributes][:name]).to eq(@merchant_1.name)
     expect(merchants[2][:attributes][:name]).to eq(@merchant_3.name)
