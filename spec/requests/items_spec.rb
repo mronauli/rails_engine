@@ -7,10 +7,10 @@ describe "Items API" do
   it "successfully" do
       get "/api/v1/items"
 
-      items = json[:data]
       expect(response).to be_successful
 
       items = json[:data]
+
       expect(items.count).to eq(20)
     end
   end
@@ -27,6 +27,7 @@ describe "Items API" do
     merchant = create(:merchant)
     valid_attributes = { name: 'Visit Narnia', description: 'blank', unit_price: 123.45, merchant_id: merchant.id }
     post "/api/v1/items", params: valid_attributes
+
     item = json[:data]
 
     expect(response).to be_successful
