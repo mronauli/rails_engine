@@ -1,5 +1,4 @@
 class Item < ApplicationRecord
-  extend SearchAttributes
   validates_presence_of :name, :description
   validates_presence_of :unit_price, numericality: { greater_than: 0 }
   belongs_to :merchant

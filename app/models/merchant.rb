@@ -1,8 +1,4 @@
-require_relative 'search_attributes'
-require 'date'
-
 class Merchant < ApplicationRecord
-  extend SearchAttributes
   validates_presence_of :name
   has_many :invoices
   has_many :items, dependent: :destroy
@@ -10,8 +6,7 @@ class Merchant < ApplicationRecord
   has_many :transactions, through: :invoices
 
   def self.search(params)
-    where('name ILIKE :params', params: "%#{params[:name]}%" || :created_at == params[:created_at]
-      .to_date || :updated_at == params[:updated_at].to_date)
+    where('name ILIKE :params', params: "%#{params[:name]}%" || :created_at == params[:created_at].to_date || :updated_at == params[:updated_at].to_date)
   end
 
   def self.most_revenue(params)
@@ -33,7 +28,7 @@ class Merchant < ApplicationRecord
   def self.my_revenue(params)
     Merchant.joins(:invoices).joins(:invoice_items)
     .joins(:transactions).where(transactions: {result: "success"})
-    .where("invoices.merchant_id = #{params[:id]}")
+    .where("invoices.merchant_id = #{params}")
     .sum("invoice_items.unit_price * invoice_items.quantity")
   end
 end

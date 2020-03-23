@@ -6,7 +6,7 @@ describe "Merchants API" do
   describe 'GET /merchants' do
     it "sends a list of merchants" do
       get "/api/v1/merchants"
-      
+
       merchants = json[:data]
 
       expect(response).to be_successful
@@ -20,7 +20,7 @@ describe "Merchants API" do
       merchant = json[:data]
 
       expect(response).to be_successful
-      expect(merchant['id'].to_i).to eq(merchant_id)
+      expect(merchant[:id].to_i).to eq(merchant_id)
     end
   end
   describe 'POST /merchants' do
@@ -31,7 +31,7 @@ describe "Merchants API" do
       merchant = json[:data]
 
       expect(response).to be_successful
-      expect(merchant['attributes']['name']).to eq('Saw')
+      expect(merchant[:attributes][:name]).to eq('Saw')
     end
   end
   describe 'PUT /merchants' do
