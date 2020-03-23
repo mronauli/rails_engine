@@ -10,25 +10,25 @@ describe "A merchant's items API" do
 
     expect(response).to be_successful
 
-    items = json['data']
+    items = json[:data]
     expect(items.count).to eq(20)
   end
-  it "can get one item by its id" do
+  it "can get on item by its id" do
     get "/api/v1/merchants/#{merchant_id}/items/#{id}"
 
-    item = json['data']
+    item = json[:data]
 
     expect(response).to be_successful
-    expect(item['id'].to_i).to eq(id)
+    expect(item[:id].to_i).to eq(id)
   end
    it "can create a new item" do
     valid_attributes = { name: 'Super Satin Sheets', description: '1000 thread', unit_price: 173.45, merchant_id: merchant_id }
     post "/api/v1/merchants/#{merchant_id}/items", params: valid_attributes
-    item = json['data']
+    item = json[:data]
 
     expect(response).to be_successful
-    expect(item['attributes']['name']).to eq('Super Satin Sheets')
-    expect(item['relationships']['merchant']['data']['id'].to_i).to eq(merchant_id)
+    expect(item[:attributes][:name]).to eq('Super Satin Sheets')
+    expect(item[:relationships][:merchant][:data][:id].to_i).to eq(merchant_id)
   end
   it "can update an existing item" do
     previous_name = Item.first.name

@@ -20,7 +20,7 @@ describe "Merchants API" do
       merchant = json[:data]
 
       expect(response).to be_successful
-      expect(merchant['id'].to_i).to eq(merchant_id)
+      expect(merchant[:id].to_i).to eq(merchant_id)
     end
   end
   describe 'POST /merchants' do
@@ -28,9 +28,8 @@ describe "Merchants API" do
       valid_attributes = { name: 'Saw' }
       post "/api/v1/merchants", params: valid_attributes
       merchant = json[:data]
-
       expect(response).to be_successful
-      expect(merchant['attributes']['name']).to eq('Saw')
+      expect(merchant[:attributes][:name]).to eq('Saw')
     end
   end
   describe 'PUT /merchants' do
