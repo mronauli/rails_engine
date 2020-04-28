@@ -1,24 +1,31 @@
-# README
+# Rails Engine
+Rails Engine is a [Turing](https://turing.io/) turing back end solo project which exposes several ecommerce endpoints to the [front end](https://github.com/turingschool-examples/rails_driver).
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+- Clone this repository by using the command ``` git clone git@github.com:mronauli/rails_engine.git```    
 
-* Ruby version
+- Find your way to the rails_engine directory ``` cd rails_engine ```
 
-* System dependencies
+- Install the gems include in the Gemfile ``` bundle ```
 
-* Configuration
+- Setup the database and import data from csv files in db folder:   
+ ```
+ rails db:drop , rails db:{create,migrate,seed}, rake create_models
+ ```   
+- Fire up the server ``` rails s ```
 
-* Database creation
+- Clone front end repository by using the command ``` https://github.com/turingschool-examples/rails_driver.git```  
 
-* Database initialization
+- Find your way to the rails_engine directory ``` cd rails_driver ```
 
-* How to run the test suite
+- Install the gems include in the Gemfile ``` bundle ```
 
-* Services (job queues, cache servers, search engines, etc.)
+- Setup the database
+ ```
+rails db:{create,migrate}
+ ```   
+- run ``` bundle exec figaro install ```
+- in your config/application.yml append ``` RAILS_ENGINE_DOMAIN: http://localhost:3000 ```
 
-* Deployment instructions
+- Fire up a separate server for the front end ``` rails s -p 3001 ```
 
-* ...
